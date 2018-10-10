@@ -1,0 +1,47 @@
+- perguntar se a pessoa quer falar com o assistente ou direto com a Kelly (salvar registro no id da pessoa)
+- definir uma frase para retomar o contato com o assistente (por exemplo: Quero falar com o assistente novamente)
+- Criar um fluxo de dialogo que reponda curiosidades sobre a cantora
+- Fazer um fluxo de dialogo para saber quais agendas estão marcadas com a cantora (filtrar pelo id da pessoa)
+- [ok] Vincular com a agenda do google (definir status de aguardando confirmação e confirmado)
+- Guardar historico das conversas (ultimas 100 iterações)
+- Armazenar em noSQL
+- Nao perguntar hora fim (considerar duração de 3 horas)
+- Pedir um telefone para contato no final (salvar para uso posterior)
+
+
+Fluxo de Dialogo na reserva da agenda
+> Data [ok] 
+ > Hora [ok] 
+  > Local [ok] 
+   > Contato [todo] (! a propria pessoa ou define um nome de outra pessoa) 
+    > Nome da Igreja [ok] 
+     > Nome do Pastor ! [todo] 
+      > Telefone para contato ! [todo]
+
+  
+Proposta de estrutura do banco
+
+usuario
+{
+"id": ...
+"primeira_iteracao": ...
+"ultima_iteracao": ...
+"dados": {
+    "sender": ...
+    "nome": ...
+    "genero": ...
+  }
+"context": {
+    ...
+  }
+}  
+
+conversas (lista ligada de conversas por usuario)
+{
+"id": ...
+"usuario": ...
+"anterior": ...
+"context": {
+    ...
+  }
+}
